@@ -24,9 +24,10 @@ class Quote
         self.all.each{|quote| puts "\nQuote: ''#{quote.quote.blue}''\n Author: #{quote.author}\n Season: #{quote.season}\n Episode: #{quote.episode}\n"}
     end
 
-    def self.find(author)
+
+    def self.find_by_name(author)
         self.all.select do |quote|
-        quote.author.capitalize == author
+        quote.name == author
         end
     end
 end

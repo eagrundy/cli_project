@@ -1,5 +1,6 @@
-
+require 'httparty'
 class Api
+
 
     def self.fetch_quotes
         url = "https://seinfeld-quotes.herokuapp.com/quotes"
