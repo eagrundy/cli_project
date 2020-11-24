@@ -13,8 +13,7 @@ class Cli
         Api.create_quotes
         @@authors = Quote.all.map{|quote| quote.author}.uniq
         Quote.display_list_of_authors
-        input = gets.chomp
-        index = input_to_index(input)
+        index = self.secondary_input
         self.display_quotes_by_authors(@@authors[index])
         puts ""
         self.another_quote?
@@ -46,9 +45,12 @@ class Cli
         input = gets.chomp
         index = input_to_index(input)
 
-        if !index.between?(0,4)
-            puts "\nPlease, select a number".colorize(:light_red)
+        if !index.between?(0,37)
+            puts "\nPlease, select a number from the list".colorize(:light_red)
             self.secondary_input
+        else 
+            index.between?(0,37)
+            self.display_quotes_by_authors(@@authors[index])
         end
         index
     end
@@ -65,8 +67,7 @@ class Cli
             puts ""
             Api.create_quotes
             Quote.display_list_of_authors
-            input = gets.chomp
-            index = input_to_index(input)
+            index = self.secondary_input
             self.display_quotes_by_authors(@@authors[index])
             puts ""
             self.another_quote?
