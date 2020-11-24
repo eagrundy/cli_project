@@ -1,4 +1,4 @@
-require 'colorize'
+
 class Quote
     attr_accessor :quote, :author, :season, :episode
 
@@ -12,6 +12,7 @@ class Quote
         @@all << self
     end
 
+
     def self.all
         @@all
     end
@@ -20,14 +21,8 @@ class Quote
         @@all = []
     end
 
-    def self.display_quotes
-        self.all.each{|quote| puts "\nQuote: ''#{quote.quote.blue}''\n Author: #{quote.author}\n Season: #{quote.season}\n Episode: #{quote.episode}\n"}
-    end
-
-
-    def self.find_by_name(author)
-        self.all.select do |quote|
-        quote.name == author
-        end
+    def self.display_list_of_authors
+        puts "\nPlease, choose one of the following characters' number to see its quotes:\n"
+        self.all.map{|quote| quote.author}.uniq.each_with_index {|name, index| puts "#{index + 1 }. #{name}"}
     end
 end

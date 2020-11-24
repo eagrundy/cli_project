@@ -1,5 +1,7 @@
 #! /usr/bin/env ruby
 
+# tells your editor which programming language you're using
+
 require_relative '../environment.rb'
 
 
