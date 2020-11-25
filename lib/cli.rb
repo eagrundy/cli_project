@@ -1,19 +1,23 @@
 require 'pry'
 class Cli
 
+        # I invoke the API inside of the start method. As soon as I initiate a new session of the class Cli,
+        # it is gonna collect the data (Api.create_quotes) and get it ready for the application
     def start
         puts "\n*-------------------------------------*"
         puts "\nHello, Seinfeld's fan!"
         puts "\n*-------------------------------------*"
         sleep(1)
         puts ""
-        puts "Are you ready for some laughs? (1-2)\n \n1. Yes \n2. No! Exit\n"
+        puts "Are you ready for some laughs? (1-2)\n \n1. Yes \n2. No! Exit.\n"
         
         index = self.initial_input
         Api.create_quotes
+        # Had to use a class variable to invoke the data as a list of authors with unique values (the data has repeated authors names)
         @@authors = Quote.all.map{|quote| quote.author}.uniq
         Quote.display_list_of_authors
         index = self.secondary_input
+        # Had to use the class variable authors and the index for each author to list out the quotes by authors after user input
         self.display_quotes_by_authors(@@authors[index])
         puts ""
         self.another_quote?
@@ -27,7 +31,9 @@ class Cli
         @@authors
     end
 
+    # takes the input, then store it and use it to execute the logic
     def initial_input
+        # grabs the user's input and store it before passing it to the method
         input = gets.chomp
         index = input_to_index(input)
 
@@ -58,7 +64,7 @@ class Cli
     def another_quote?
         puts "Would you like to see other quotes? (1-2)"
         puts "1. Yes"
-        puts "2. No"
+        puts "2. No. Exit."
         input = gets.chomp
         index = input_to_index(input)
 
@@ -84,12 +90,14 @@ class Cli
     end
 
     def invalid_entry
-        puts "\nInvalid entry. Try again.\n".colorize(:light_red)
+        puts "\nInvalid entry. Try a number.\n".colorize(:light_red)
         sleep(1)
     end
 
 
     def display_quotes_by_authors(name)
+        # Had to create a variable to store list of authors, to keep track of them and use them a little bit more in the block, after iterating over the all array in the Quote class, accessing each quote, telling it to list it by the name(author)
+        # Then I use a if/else statement to list the quotes according to how many quotes each author has. If it has more than 10 quotes, then I ask it to list only 10.
         seinfeld = Quote.all.select{|quote| quote.author == name}
 
         if seinfeld.length > 10

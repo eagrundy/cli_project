@@ -7,3 +7,7 @@ require_relative '../environment.rb'
 
 cli = Cli.new
 cli.start
+
+# I instatiate a new instance of my Cli class by calling a .new method on it and then invoking the start method. It creates a new instance of Cli because we are initiating a new session of Cli.
+
+# This run file is my point of entry
