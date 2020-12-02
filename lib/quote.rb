@@ -5,6 +5,8 @@ class Quote
 
     @@all = []
 
+    # instance method
+    # 
     def initialize(quote, author, season, episode)
         @quote = quote
         @author = author
@@ -23,9 +25,13 @@ class Quote
         @@all = []
     end
 
+
     # Iterates over the all array and use method map to go over the quotes, list them using the authors with the index + 1
     def self.display_list_of_authors
         puts "\nPlease, choose one of the following characters' number to see its quotes:\n"
         self.all.map{|quote| quote.author}.uniq.each_with_index {|name, index| puts "#{index + 1 }. #{name}"}
+        # self.all.map{|quote| quote.author}.uniq[0..2].each_with_index {|name, index| puts "#{index + 1 }. #{name}"}
+        
+        # uses the return value(authors)
     end
 end
